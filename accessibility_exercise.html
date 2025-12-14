@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Tu tienda de tecnología</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 15px;
+            color: white;
+        }
+
+        nav {
+            background-color: #45a049;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #90EE90;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .banner {
+            background-color: #2196F3;
+            color: #87CEEB;
+            padding: 40px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-price {
+            color: #ff5722;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #ff9800;
+            color: #ffcc80;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .form-section {
+            background: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 100px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #333;
+            color: #666;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .video-container {
+            margin: 30px 0;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #e0e0e0;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .tab.active {
+            background: white;
+            border-bottom: 2px solid white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: white;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .alert {
+            background-color: #f44336;
+            color: #ff9999;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .breadcrumb {
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .image-gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .image-gallery img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-active {
+            background-color: green;
+        }
+
+        .status-inactive {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TechStore</h1>
+        <p>La mejor tecnología al mejor precio</p>
+    </header>
+
+    <nav>
+        <a href="#" onclick="navigateTo('home')">Inicio</a>
+        <a href="#" onclick="navigateTo('products')">Productos</a>
+        <a href="#" onclick="navigateTo('contact')">Contacto</a>
+        <a href="#" onclick="navigateTo('about')">Sobre Nosotros</a>
+    </nav>
+
+    <div class="banner">
+        ¡Ofertas de Temporada! Hasta 50% de descuento
+    </div>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Inicio</a> > <a href="#">Productos</a> > Laptops
+        </div>
+
+        <h2>Productos Destacados</h2>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23ddd' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999'%3ELaptop Pro%3C/text%3E%3C/svg%3E">
+                <div class="product-title">Laptop Pro 15"</div>
+                <div class="product-price">$999.99</div>
+                <button class="btn" onclick="addToCart(1)">Agregar al carrito</button>
+            </div>
+
+            <div class="product-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23ddd' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999'%3ESmartphone%3C/text%3E%3C/svg%3E">
+                <div class="product-title">Smartphone X</div>
+                <div class="product-price">$799.99</div>
+                <button class="btn" onclick="addToCart(2)">Agregar al carrito</button>
+            </div>
+
+            <div class="product-card">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23ddd' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999'%3ETablet%3C/text%3E%3C/svg%3E">
+                <div class="product-title">Tablet Ultra</div>
+                <div class="product-price">$499.99</div>
+                <button class="btn" onclick="addToCart(3)">Agregar al carrito</button>
+            </div>
+        </div>
+
+        <div class="alert">
+            ¡Atención! Stock limitado en algunos productos
+        </div>
+
+        <h2>Video Promocional</h2>
+        <div class="video-container">
+            <video width="640" height="360" autoplay>
+                <source src="promo.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h2>Información del Producto</h2>
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'specs')">Especificaciones</button>
+            <button class="tab" onclick="openTab(event, 'reviews')">Reseñas</button>
+            <button class="tab" onclick="openTab(event, 'warranty')">Garantía</button>
+        </div>
+
+        <div id="specs" class="tab-content active">
+            <h3>Especificaciones Técnicas</h3>
+            <table>
+                <tr>
+                    <td>Procesador</td>
+                    <td>Intel Core i7</td>
+                </tr>
+                <tr>
+                    <td>Memoria RAM</td>
+                    <td>16GB DDR4</td>
+                </tr>
+                <tr>
+                    <td>Almacenamiento</td>
+                    <td>512GB SSD</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="reviews" class="tab-content">
+            <h3>Reseñas de Clientes</h3>
+            <p>Excelente producto, muy recomendado - ★★★★★</p>
+        </div>
+
+        <div id="warranty" class="tab-content">
+            <h3>Información de Garantía</h3>
+            <p>Garantía de 2 años en todos nuestros productos</p>
+        </div>
+
+        <h2>Galería de Imágenes</h2>
+        <div class="image-gallery">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23ddd' width='150' height='150'/%3E%3C/svg%3E" onclick="openModal('img1')">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23ddd' width='150' height='150'/%3E%3C/svg%3E" onclick="openModal('img2')">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23ddd' width='150' height='150'/%3E%3C/svg%3E" onclick="openModal('img3')">
+        </div>
+
+        <div class="form-section">
+            <h2>Contáctanos</h2>
+            <form onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Teléfono">
+                </div>
+                <div class="form-group">
+                    <select>
+                        <option>Seleccione un tema</option>
+                        <option>Ventas</option>
+                        <option>Soporte</option>
+                        <option>Devoluciones</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea rows="4" placeholder="Mensaje"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="terms">
+                    <label>Acepto los términos y condiciones</label>
+                </div>
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+
+        <h2>Estado de Pedidos</h2>
+        <table>
+            <tr>
+                <td>Pedido #1234</td>
+                <td><span class="status-indicator status-active"></span> En proceso</td>
+            </tr>
+            <tr>
+                <td>Pedido #1235</td>
+                <td><span class="status-indicator status-inactive"></span> Cancelado</td>
+            </tr>
+            <tr>
+                <td>Pedido #1236</td>
+                <td><span class="status-indicator status-active"></span> Entregado</td>
+            </tr>
+        </table>
+
+        <h3>Haz clic aquí para más información</h3>
+        <div onclick="showInfo()" style="cursor: pointer; color: blue; text-decoration: underline;">
+            Ver detalles adicionales
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Imagen Ampliada</h2>
+            <img id="modalImage" style="width: 100%;">
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 TechStore. Todos los derechos reservados.</p>
+        <p>Síguenos en redes sociales</p>
+        <div>
+            <a href="#"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect fill='%23666' width='30' height='30'/%3E%3C/svg%3E"></a>
+            <a href="#"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect fill='%23666' width='30' height='30'/%3E%3C/svg%3E"></a>
+            <a href="#"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect fill='%23666' width='30' height='30'/%3E%3C/svg%3E"></a>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(page) {
+            console.log('Navigating to: ' + page);
+        }
+
+        function addToCart(productId) {
+            alert('Producto agregado al carrito: ' + productId);
+        }
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabs;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tabs = document.getElementsByClassName("tab");
+            for (i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function openModal(imageId) {
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            alert('Formulario enviado');
+        }
+
+        function showInfo() {
+            alert('Aquí hay más información sobre nuestros productos');
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
